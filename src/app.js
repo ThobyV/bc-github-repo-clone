@@ -143,11 +143,6 @@ const userProfile = (profile) => {
     render(SidebarComponent, 'profile');
 }
 
-function repoRequestCount(count) {
-    var Component = e('b', { data: `${count} for` });
-    render(Component);
-}
-
 function userRepoCount(count) {
     var Component = e('span', 'repo-count-label', { data: count });
     render(Component, 'repo-count-data');
@@ -202,7 +197,6 @@ function handleDataResult({ data }) {
     userProfile(data.viewer);
     repoList(repositories.nodes);
     userRepoCount(repositories.totalCount);
-    repoRequestCount(repositories.nodes.length);
     setScrollWatcher();
 }
 

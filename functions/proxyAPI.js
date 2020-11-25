@@ -12,7 +12,7 @@ viewer {
     location
     url
     company
-    repositories(orderBy: {field: PUSHED_AT, direction: DESC}, first: 10, isFork: false) {
+    repositories(orderBy: {field: PUSHED_AT, direction: DESC}, first: 17, isFork: false) {
     totalCount
     nodes {
         id
