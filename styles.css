@@ -1,0 +1,481 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+    vertical-align: baseline;
+}
+
+html, body {
+	background: #FFF;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #2d333a;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+#app {
+	height: 100%;
+}
+
+
+h1, h2, h3, h4, p {
+	font-weight: normal; 	
+}
+
+h1 {
+	font-size: 2rem; 
+}
+
+
+h2 {
+	font-size: 1.5rem;
+}
+
+h3 {
+	font-size: 1.17rem;	
+}
+
+
+h4 {
+	font-size: 1rem;
+}
+
+p {
+	font-size: 0.8725rem;	
+}
+
+header {
+	position: relative;
+	width: 100%;
+    background-color: #24292e;
+    padding: 16px 32px;
+	color: white;
+	font-weight: bold;
+	display: flex;
+	margin-bottom: 1rem;	
+}
+
+header > .head-left {
+	margin-left: auto; 
+}
+
+header > .head-right {
+	margin-right: auto; 
+}
+
+header > .bell, .repo, .profile-src {
+	margin-left: 16px;
+}
+
+header > .responsive{
+	display: flex;
+}
+
+header > .responsive > div {
+	margin-left: 16px; 
+}
+
+header .only-desktop {
+	display: none;
+}
+
+header .search input {
+	border-radius: 6px;
+	outline: none;
+	padding: 5px 12px;
+	background-color: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 0.8325rem;
+}
+
+@media screen and (max-width: 900px) {
+	header {
+		flex-wrap: wrap;
+		padding: 16px 16px;		
+		margin-bottom: 0;		
+	}
+
+	header > .bell, .repo, .profile-src {
+		margin: 0;
+	}
+
+	header > .toggle-menu, .logo, .bell {
+		flex: 1 1 33.3%;		
+		display: inline;
+	}
+
+	header > .bell a{
+		float: right;
+	}
+
+	header > .logo {
+		text-align: center;
+	}
+
+	header > .responsive{
+		display: none;	
+		order: 1;
+	}
+
+	header > .responsive > div{
+		padding: 8px 0;
+		font-size: 0.823rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	header > .sign-out{
+		flex: 100%;				
+		order: 1;
+		display: inline-block;
+	}
+
+	header > .profile-src, .repo {
+		display: none;
+	}
+
+	header > .show {
+		display: block;
+	}
+
+	header .only-desktop {
+		display: block;
+	}
+
+	header > .head-right {
+		margin: 0;
+	}
+	
+}
+
+.home {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+.home #profile {
+	margin-right: auto;
+	flex: 1 1 30%;
+}
+
+.home #repositories{
+	flex: 1 1 70%;
+}
+
+.home #repo-tab-navigation {
+	z-index: 1;
+	width: 100%;	
+	display: flex;
+	justify-content: flex-end;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+	box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.1);
+	background-color: white;
+}
+
+#repo-tab-navigation > #profile-data-mini {
+	margin-right: auto;
+	flex: 1 1 30%;
+	padding: 20px 0 24px 32px;	
+}
+
+#repo-tab-navigation > #repo-count {
+	flex: 1 1 70%;
+	padding: 20px 0 24px 20px;	
+}
+
+#repo-count-data {
+	padding: 20px 0 24px 0;
+	border-bottom: 3px solid rgb(249, 130, 108);			
+}
+
+#repo-count-data .repo-count-label {
+	background-color:rgba(209,213,218,0.5);
+	border-radius: 2em;
+	padding: 4px 8px;
+	font-weight: normal;
+	color: #586069;
+}
+
+#repositories .find-repo {
+	display: flex;
+	margin: 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#repositories .find-repo input {
+	border-radius: 6px;
+	outline: none;
+	padding: 10px 16px;
+	margin: 8px 0 24px 0;
+	background-color: transparent;
+	font-size: 0.8325rem;
+	color: #586069;	
+	border: 1px solid rgb(179, 188, 197);
+	width: 100%;
+}
+
+.profile-data-mini {
+	margin: 16px;
+}
+
+.profile-data-full {
+	z-index: 1;
+	display: flex;
+	flex-direction: column; 
+	margin-top: 16px;	
+}
+
+.profile-container {
+	position: relative;
+	padding: 0 0 0 32px;	
+}
+
+.avartar-container {
+	z-index: 2;	
+	position: relative;
+}
+
+.avartar-base, .names-base {
+	margin: 0rem;
+}
+
+.avartar-base img{
+	width: 12rem;
+	height: auto;
+	border-radius: 128px;
+}
+
+.names-base h2, h3, h4 {
+	padding-top: 8px;
+	display: block;
+}
+
+.repo-list {
+	display: flex;
+	margin: 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.repo-list > .left-s {
+	flex: 1 1 80%;
+}
+
+.repo-list > .right-s {
+	flex: 1 1 20%;
+}
+
+.right-s div {
+	text-align: right;
+}
+
+.repo-list a {
+	text-decoration: none;	
+	color: #0366D6;
+}
+
+.repo-list h3 {
+	font-weight: bold;
+}
+
+.repo-list h4 {
+	padding: 0.5rem 0 0 0;
+	color: #586069;
+}
+
+.repo-list span {
+	font-size: 0.823rem;
+	color: #586069;
+}
+
+.repo-list p {
+	padding: 1rem 1rem 1rem 0;
+	color: #586069;
+	display: inline-block;
+}
+
+.repo-list button {
+	color: #586069;	
+	padding: 5px 16px;
+	background-color: #FAFBFC;
+	border: 1px solid rgb(179, 188, 197);
+	border-radius: 8px;
+	outline: none;
+	font-size: 1rem; 
+}
+
+.status-button-round {
+	position: absolute;
+	background-color: white;
+	border-radius: 32px;
+	box-shadow: 1.3px 2px 2px 2px rgba(0, 0, 0, 0.1);
+	color: #586069;
+	padding: 0.4rem 0.5rem;
+	display: inline-block;
+	bottom: 20%;
+	right: 35%;
+}
+
+.status-text {
+	display: none;
+}
+
+.status-button-round:hover {
+	right: 10%;	
+}
+
+.status-button-round:hover > .status-text {
+	display: inline;
+	transition: all 0.3s ease;
+}
+
+.status-normal {
+	display: none;
+	border-radius: 6px;
+	outline: none;
+	padding: 5px 8px;
+	margin: 24px 0 8px 0;
+	font-size: 0.8325rem;
+	color: #586069;	
+	border: 1px solid rgb(202, 210, 218);
+	width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+	.home {
+		flex-wrap: wrap;
+	}
+
+	.home #repo-tab-navigation {
+		order: 1;
+	}
+
+	#repo-tab-navigation > #profile-data-mini {
+		display: none;
+	}
+
+	#repo-tab-navigation > #repo-count {
+		padding: 20px 24px 16px 24px;	
+	}
+
+	#repo-count-data {
+		padding: 20px 0 16px 0;
+	}
+
+	.home #repositories{
+		order: 2;		
+	}
+
+
+	.right-s {
+		vertical-align: center;
+	}
+
+	.repo-list button {
+		padding: 5px 4px;
+		font-size: 0.823rem;
+	}
+
+
+	.profile-container {
+		padding: 0 16px 0 16px;	
+	}
+
+	.profile-data-full {
+		display: flex;
+		flex-direction: row; 
+	}
+
+	.avartar-base img{
+		width: 3.5rem;
+		border-radius: 48px;
+		height: auto;
+	}
+
+	.avartar-base, .names-base {
+		margin: 0 0.6rem 0 0;
+	}
+	
+	.status-button-round {
+		display: none;
+	}
+
+	.status-normal {
+		display: block;
+	}
+}
+
+	.navbar-profile-data {
+		display: none;
+	}
+
+	.navbar-show {
+		display: inline-block;
+		-webkit-animation: fadein 0.3s; 
+       -moz-animation: fadein 0.3s; 
+        -ms-animation: fadein 0.3s; 
+         -o-animation: fadein 0.3s;
+		animation: fadein 0.3s;
+	}
+
+	@keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	.navbar-profile-data img {
+		display: inline-block;
+		vertical-align: middle;
+		width: 1.3rem;
+		border-radius: 48px;
+		height: auto;	
+		margin: 0 5px 0 5px; 
+	}
+
+
+	.navbar-profile-data b {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 5px 0 5px; 
+	}
+
+	.header-profile-data img {
+		display: inline-block;
+		vertical-align: middle;
+		width: 1.3rem;
+		border-radius: 48px;
+		height: auto;	
+		margin: 0 5px 0 5px; 
+	}
+
+
+	.dropdown-caret {
+		display: inline-block;
+		width: 0px;
+		height: 0px;
+		vertical-align: middle;
+		content: "";
+		border-top-style: solid;
+		border-top-width: 4px;
+		border-right: 4px solid transparent;
+		border-bottom: 0px solid transparent;
+		border-left: 4px solid transparent;
+	}

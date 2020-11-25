@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Github Account Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id='app'>
+        <header class='navbar'>
+            <div class="toggle-menu only-desktop">
+                <div id="menu">
+                    <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true">
+                        <path fill="white" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="logo">
+                <a>
+                    <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
+                        <path fill="white" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div id="responsive-menu" class="responsive head-right">
+                <div class="search">
+                    <input value="Search or jump to..."></input>
+                </div>
+                <div class="pr">Pull requests</div>
+                <div class="issues">Issues</div>
+                <div class="marketplace head-left">Marketplace</div>
+                <div class="explore">Explore</div>
+                <div class="settings only-desktop">Settings</div>
+                <div class="profile-link only-desktop">Thobyv</div>
+                <div class="sign-out only-desktop">Sign out</div>
+            </div>
+            <div class="bell">
+                <a>
+                    <svg class="octicon octicon-bell" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                        <path d="M8 16a2 2 0 001.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 008 16z"></path>
+                        <path fill="white" d="M8 1.5A3.5 3.5 0 004.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.018.018 0 00-.003.01l.001.006c0 .002.002.004.004.006a.017.017 0 00.006.004l.007.001h10.964l.007-.001a.016.016 0 00.006-.004.016.016 0 00.004-.006l.001-.007a.017.017 0 00-.003-.01l-1.703-2.554a1.75 1.75 0 01-.294-.97V5A3.5 3.5 0 008 1.5zM3 5a5 5 0 0110 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.518 1.518 0 0113.482 13H2.518a1.518 1.518 0 01-1.263-2.36l1.703-2.554A.25.25 0 003 7.947V5z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="repo">
+                <svg class="octicon octicon-plus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                    <path fill="white" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path>
+                </svg>
+                <span class="dropdown-caret"></span>
+            </div>
+            <div id="profile-src" class="profile-src"></div>
+        </header>
+
+        <div id='home' class="home">
+            <div id="repo-tab-navigation">
+                <div id="profile-data-mini">
+                </div>
+                <div id="repo-count">
+                    <b id="repo-count-data">Repositories </b>
+                </div>
+            </div>
+            <div id="profile"></div>
+            <div id='repositories'>
+                <div class="find-repo">
+                    <input value="Find a repository..."> </input>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const GITHUB_GRAPH_API_MASK_URL = 'http://localhost:8888/.netlify/functions/proxyAPI';
+
+        // Conveniently create elements from generated virtual element tree
+
+        function createElement(nodeTree, parentNode, mountEl) {
+            var root = document.getElementById(mountEl || 'app');
+            for (var i = 0; i <= nodeTree.length - 1; i++) {
+                var node = nodeTree[i];
+                // create an actual dom element from the current node object
+                if (node.tag) var newEl = document.createElement(node.tag);
+                var string = typeof node.data !== 'undefined' ? node.data : '';
+                var text = document.createTextNode(string);
+                if (node.class) newEl.className = node.class;
+                if (node.attrs) {
+                    for (var attr in node.attrs) {
+                        newEl.setAttribute(attr, node.attrs[attr]);
+                    }
+                }
+                newEl.appendChild(text);
+                root.appendChild(newEl);
+                if (node.children) {
+                    newEl.appendChild(createElement(node.children, newEl));
+                }
+                if (parentNode) parentNode.appendChild(newEl);
+            }
+            return newEl;
+        }
+
+        // Generate elements virtual tree to represent a small virtual DOM
+        function e() {
+            var args = arguments;
+            var node = {}
+
+            for (var i = 0; i <= args.length - 1; i++) {
+                if (typeof args[i] === 'string') {
+                    if (i !== 0 && i == 1) node.class = args[i];
+                    else node.tag = args[i];
+                }
+                if (args[i] instanceof Array) node.children = args[i]
+                else if (typeof args[i] === 'object') {
+                    node['attrs'] = args[i].attrs;
+                    node['data'] = args[i].data;
+                }
+            }
+            return node;
+        }
+
+        /* Support multiple components, dynamic mounting to any element and finally insert the
+        elements to the DOM using createElement()
+        */
+
+        function render() {
+            var args = arguments;
+            var elementTreeArray, mountEl;
+            if (typeof args[args.length - 1] === 'string') {
+                mountEl = args[args.length - 1];
+                args.length = args.length - 1;
+                elementTreeArray = [...args];
+                return createElement(elementTreeArray, null, mountEl);
+            }
+            elementTreeArray = [...args];
+            return createElement(elementTreeArray);
+        }
+
+        const cuteDate = (d) => {
+            let date = new Date(d);
+            let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString(undefined, options).replace(',', ' ');
+        }
+
+        const repoList = (repos) => {
+            repos.forEach(repo => {
+                let { name, url, stargazers, forks, languages, pushedAt, description } = repo;
+                let Component = e('div', 'repo-list',
+                    [
+                        e('div', 'left-s', [
+                            e('a', { attrs: { href: url } }, [e('h3', { data: name })]),
+                            description ? e('h4', { data: description }) : {},
+                            languages.nodes.length && e('p', { data: languages.nodes[0].name }),
+                            forks.totalCount &&
+                            e('span', [
+                                e('img', { attrs: { src: 'SVG/fork.svg', style: 'width:16px' } }),
+                                e('p', { data: forks.totalCount })
+                            ]),
+                            stargazers.totalCount &&
+                            e('span', [
+                                e('img', { attrs: { src: 'SVG/star.svg', style: 'width:16px' } }),
+                                e('p', { data: stargazers.totalCount })
+                            ]),
+                            e('p', { data: `updated at ${cuteDate(pushedAt)}` })
+                        ]),
+                        e('div', 'right-s', [
+                            e('div', [
+                                e('button', [
+                                    e('img', { attrs: { src: 'SVG/star.svg', style: 'width:16px' } }),
+                                    e('span', { data: ' Star' }),
+                                ])
+                            ])
+                        ]),
+                    ]
+                )
+                render(Component, 'repositories');
+            });
+        }
+
+        const userProfile = (profile) => {
+            let { name, avatarUrl, login, bio, url } = profile;
+
+            let SidebarComponent = e('div', 'profile-container', [
+                e('div', 'profile-data-full',
+                    [
+                        e('div', 'avartar-base', [
+                            e('div', 'avartar-container', [
+                                e('img', { attrs: { src: avatarUrl } }),
+                                e('a', 'status-button-round', [
+                                    e('img', { attrs: { src: 'SVG/smile.svg', style: 'width:20px' } }),
+                                    e('a', 'status-text', { data: ' Set status' })
+                                ]),
+                            ])
+                        ]),
+                        e('div', 'names-base', [
+                            e('h2', [e('b', { data: name })]),
+                            e('h4', { data: login }),
+                        ]),
+                    ]),
+                e('div', 'status-normal', { data: 'set status' }),
+                e('br'),
+                e('p', { data: bio }),
+            ])
+
+            let HeaderComponent = e('div', 'header-profile-data', [
+                e('img', { attrs: { src: avatarUrl } }),
+                e('span', 'dropdown-caret'),
+            ]);
+
+            let NavigationBarComponent = e('div', 'navbar-profile-data', { attrs: { id: 'navbar-profile-data' } }, [
+                e('img', { attrs: { src: avatarUrl } }),
+                e('b', { data: login })
+            ])
+
+            render(NavigationBarComponent, 'profile-data-mini')
+            render(HeaderComponent, 'profile-src');
+            render(SidebarComponent, 'profile');
+        }
+
+        function repoRequestCount(count) {
+            var Component = e('b', { data: `${count} for` });
+            render(Component);
+        }
+
+        function userRepoCount(count) {
+            var Component = e('span', 'repo-count-label', { data: count });
+            render(Component, 'repo-count-data');
+        }
+
+        //Setup Eventlisteners
+        function setMenuToggler() {
+            var menuButton = document.getElementById('menu');
+            var responsiveMenu = document.getElementById('responsive-menu');
+            var showMenu = false;
+
+            function toggle(show) {
+                show ? responsiveMenu.classList.add('show')
+                    : responsiveMenu.classList.remove('show');
+            }
+
+            function handleToggle() {
+                showMenu = !showMenu
+                toggle(showMenu);
+            }
+            menuButton.onclick = handleToggle;
+        }
+
+        function setScrollWatcher() {
+            var show = false;
+            var classAdded = false;
+
+            var profileData = document.getElementById('navbar-profile-data');
+
+            function onScrollHandler() {
+
+                function handleToggle(show) {
+                    show ? profileData.classList.add('navbar-show')
+                        : profileData.classList.remove('navbar-show');
+                }
+
+                if (window.scrollY > 430 && !classAdded) {
+                    classAdded = true;
+                    handleToggle(true);
+                }
+                if (window.scrollY < 430 && classAdded) {
+                    classAdded = false;
+                    handleToggle(false);
+                }
+
+            }
+            window.addEventListener("scroll", onScrollHandler)
+        };
+
+        function handleDataResult({ data }) {
+            var { repositories } = data.viewer;
+            userProfile(data.viewer);
+            repoList(repositories.nodes);
+            userRepoCount(repositories.totalCount);
+            repoRequestCount(repositories.nodes.length);
+            setScrollWatcher();
+        }
+
+        function getData() {
+            fetch(GITHUB_GRAPH_API_MASK_URL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(result => result.json())
+                .then(data => {
+                    console.log(data)
+                    handleDataResult(data)
+                })
+                .catch((error) => { console.log(error) })
+        }
+
+        (function initUI() {
+            setMenuToggler();
+            getData();
+        }());
+
+    </script>
+</body>
+
+</html>
