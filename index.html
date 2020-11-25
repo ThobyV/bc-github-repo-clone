@@ -76,7 +76,7 @@
 
     <script>
 
-        const GITHUB_GRAPH_API_MASK_URL = 'http://localhost:8888/.netlify/functions/proxyAPI';
+        const GITHUB_GRAPH_API_MASK_URL = 'https://bc-challenge-app.netlify.app/.netlify/functions/proxyAPI';
 
         // Conveniently create elements from generated virtual element tree
 
@@ -296,7 +296,7 @@
                     console.log(data)
                     handleDataResult(data)
                 })
-                .catch((error) => { console.log(error) })
+                .catch((error) => { console.log('netlify proxy api',error) })
         }
 
         (function initUI() {
