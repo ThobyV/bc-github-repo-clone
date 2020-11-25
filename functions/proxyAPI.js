@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const GITHUB_API_KEY = process.env.GITHUB_API_KEY;
+const GITHUB_API_KEY = `${process.env.GITHUB_API_KEY}`;
 const GITHUB_GRAPH_API_URL = 'https://api.github.com/graphql';
 const GRAPH_QUERY = {
     "query": `{
