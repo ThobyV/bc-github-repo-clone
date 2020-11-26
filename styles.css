@@ -240,7 +240,7 @@ header .search input {
 
 #repo-tab-navigation > #profile-data-mini {
 	margin-right: auto;
-	flex: 1 1 30%;
+	flex: 1 1 20%;
 	padding: 20px 0 24px 32px;	
 }
 
