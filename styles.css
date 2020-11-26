@@ -396,12 +396,21 @@ header .search input {
 }
 
 .status-button-round:hover {
-	right: 10%;	
+	right: 2%;
 }
 
 .status-button-round:hover > .status-text {
 	display: inline;
-	transition: all 0.3s ease;
+	-webkit-animation: show-status 12s ease; 
+	-moz-animation: show-status 12s ease; 
+	 -ms-animation: show-status 12s ease; 
+	  -o-animation: show-status 12s ease;
+	 animation: show-status 12s ease;
+}
+
+@keyframes show-status {
+ from { width: 0%; }
+ to   { width: 100%; }
 }
 
 .status-normal {
