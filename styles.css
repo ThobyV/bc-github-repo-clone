@@ -464,6 +464,17 @@ header .search input {
 		font-size: 0.823rem;
 	}
 
+	.left-s h3 {
+		font: 1rem;
+	}
+
+	.left-s h4 {
+		font: 0.872rem;
+	}
+
+	.left-s p {
+		font-size: 0.823rem;
+	}
 
 	.profile-container {
 		top: 0; 			
