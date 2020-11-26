@@ -130,6 +130,26 @@ header .search input {
 	to   { width: 95%; }
 }
 
+.lang-circle {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.circle-notif-bar {
+	top: -0.2rem;
+	left: -0.7rem;
+	position: relative;
+	vertical-align: top;
+	background-image: linear-gradient(#54a3ff,#006eed);
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	border: 2px solid #24292e; 
+}
+
 @media screen and (max-width: 900px) {
 	header {
 		flex-wrap: wrap;
@@ -199,7 +219,7 @@ header .search input {
 
 .home #profile {
 	margin-right: auto;
-	flex: 1 1 30%;
+	flex: 1 1 20%;
 }
 
 .home #repositories{
@@ -226,11 +246,11 @@ header .search input {
 
 #repo-tab-navigation > #repo-count {
 	flex: 1 1 70%;
-	padding: 20px 0 24px 20px;	
+	padding: 20px 0 16px 20px;	
 }
 
 #repo-count-data {
-	padding: 20px 0 24px 0;
+	padding: 20px 0 16px 0;
 	border-bottom: 3px solid rgb(249, 130, 108);			
 }
 
@@ -260,7 +280,7 @@ header .search input {
 	width: 100%;
 }
 
-.profile-data-mini {
+.profile-data-mini {	
 	margin: 16px;
 }
 
@@ -272,13 +292,20 @@ header .search input {
 }
 
 .profile-container {
+	top: -3rem; 	
 	position: relative;
-	padding: 0 0 0 32px;	
+	padding: 0 0 0 16px;	
 }
 
 .avartar-container {
+	display: inline-block;	
 	z-index: 2;	
 	position: relative;
+}
+
+.avartar-base {
+	display: inline-block;
+	vertical-align: center;
 }
 
 .avartar-base, .names-base {
@@ -286,13 +313,16 @@ header .search input {
 }
 
 .avartar-base img{
-	width: 12rem;
+	width: 12.5rem;
 	height: auto;
-	border-radius: 128px;
+	border-radius: 50%;
+}
+
+.names-base {
+	padding: 24px 0;
 }
 
 .names-base h2, h3, h4 {
-	padding-top: 8px;
 	display: block;
 }
 
@@ -355,10 +385,10 @@ header .search input {
 	border-radius: 32px;
 	box-shadow: 1.3px 2px 2px 2px rgba(0, 0, 0, 0.1);
 	color: #586069;
-	padding: 0.4rem 0.5rem;
+	padding: 0.5rem 0.6rem;
 	display: inline-block;
 	bottom: 20%;
-	right: 35%;
+	right: 2%;
 }
 
 .status-text {
@@ -427,6 +457,7 @@ header .search input {
 
 
 	.profile-container {
+		top: 0; 			
 		padding: 0 16px 0 16px;	
 	}
 
@@ -452,6 +483,11 @@ header .search input {
 	.status-normal {
 		display: block;
 	}
+
+	.names-base {
+		padding: 0;
+	}
+	
 }
 
 	.navbar-profile-data {

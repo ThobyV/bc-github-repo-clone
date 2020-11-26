@@ -77,15 +77,19 @@ const repoList = (repos) => {
                 e('div', 'left-s', [
                     e('a', { attrs: { href: url } }, [e('h3', { data: name })]),
                     description ? e('h4', { data: description }) : {},
-                    languages.nodes.length && e('p', { data: languages.nodes[0].name }),
+                    languages.nodes.length &&
+                    e('span', [
+                        e('span', 'lang-circle', { attrs: { style: `background-color:${languages.nodes[0].color}; margin-right: 0.5rem` } }),
+                        e('p', { data: languages.nodes[0].name })
+                    ]),
                     forks.totalCount &&
                     e('span', [
-                        e('img', { attrs: { src: 'SVG/fork.svg', style: 'width:16px' } }),
+                        e('img', { attrs: { src: 'SVG/fork.svg', style: 'width:16px; margin-right: 0.5rem' } }),
                         e('p', { data: forks.totalCount })
                     ]),
                     stargazers.totalCount &&
                     e('span', [
-                        e('img', { attrs: { src: 'SVG/star.svg', style: 'width:16px' } }),
+                        e('img', { attrs: { src: 'SVG/star.svg', style: 'width:16px; margin-right: 0.5rem' } }),
                         e('p', { data: stargazers.totalCount })
                     ]),
                     e('p', { data: `updated at ${cuteDate(pushedAt)}` })
@@ -121,11 +125,10 @@ const userProfile = (profile) => {
                 ]),
                 e('div', 'names-base', [
                     e('h2', [e('b', { data: name })]),
-                    e('h4', { data: login }),
+                    e('h3', { data: login }),
                 ]),
             ]),
         e('div', 'status-normal', { data: 'set status' }),
-        e('br'),
         e('p', { data: bio }),
     ])
 
