@@ -26,7 +26,8 @@ function createElement(nodeTree, parentNode, mountEl) {
     return newEl;
 }
 
-// Generate elements virtual tree to represent a small virtual DOM
+// Generate elements virtual node tree 
+
 function e() {
     var args = arguments;
     var node = {}
@@ -143,12 +144,13 @@ const userProfile = (profile) => {
     render(SidebarComponent, 'profile');
 }
 
-function userRepoCount(count) {
-    var Component = e('span', 'repo-count-label', { data: count });
+const userRepoCount = (count) => {
+    let Component = e('span', 'repo-count-label', { data: count });
     render(Component, 'repo-count-data');
 }
 
-//Setup Eventlisteners
+// Setup Menu toggle button
+
 function setMenuToggler() {
     var menuButton = document.getElementById('menu');
     var responsiveMenu = document.getElementById('responsive-menu');
@@ -165,6 +167,8 @@ function setMenuToggler() {
     }
     menuButton.onclick = handleToggle;
 }
+
+// Setup onscroll handler to display or hide username and avartar on srcoll 
 
 function setScrollWatcher() {
     var show = false;
@@ -192,8 +196,14 @@ function setScrollWatcher() {
     window.addEventListener("scroll", onScrollHandler)
 };
 
+function hideLoadingAnimation() {
+    var loadingEl = document.getElementById('loading-animation');
+    loadingEl.style.display = "none";
+}
+
 function handleDataResult({ data }) {
     var { repositories } = data.viewer;
+    hideLoadingAnimation();
     userProfile(data.viewer);
     repoList(repositories.nodes);
     userRepoCount(repositories.totalCount);

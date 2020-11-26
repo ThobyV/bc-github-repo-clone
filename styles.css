@@ -98,6 +98,7 @@ header .only-desktop {
 }
 
 header .search input {
+	width: 100%;
 	border-radius: 6px;
 	outline: none;
 	padding: 8px 18px;
@@ -105,6 +106,22 @@ header .search input {
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	color: rgba(255, 255, 255, 0.7);
 	font-size: 0.8325rem;
+}
+
+#loading-animation {
+	background-color: rgb(121, 184, 255); 
+	width: 95%; 
+	height: 3px;
+	-webkit-animation: grow-width 12s ease; 
+       -moz-animation: grow-width 12s ease; 
+        -ms-animation: grow-width 12s ease; 
+         -o-animation: grow-width 12s ease;
+		animation: grow-width 12s ease;
+}
+
+@keyframes grow-width {
+	from { width: 0%; }
+	to   { width: 95%; }
 }
 
 @media screen and (max-width: 900px) {
