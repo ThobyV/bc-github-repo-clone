@@ -109,7 +109,13 @@ header .search input {
 }
 
 #loading-animation {
-	background-color: rgb(121, 184, 255); 
+	background-color: rgb(60, 138, 228); 
+	width: 100%;
+	height: 3px;
+}
+
+#loading-animation > div {
+	background-color: rgb(121, 184, 255); 	
 	width: 95%; 
 	height: 3px;
 	-webkit-animation: grow-width 12s ease; 
@@ -398,13 +404,17 @@ header .search input {
 	}
 
 	#repo-count-data {
+		font-size: 0.823rem;
 		padding: 20px 0 16px 0;
+	}
+
+	#repo-count-data svg {
+		display: none;
 	}
 
 	.home #repositories{
 		order: 2;		
 	}
-
 
 	.right-s {
 		vertical-align: center;
